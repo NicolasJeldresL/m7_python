@@ -1,0 +1,6 @@
+{% extends 'm7_python/base.html' %}
+{% block content %}
+<h2>Perfil de {{ user.username }}</h2>
+<p>Email: {{ user.email }}</p>
+<p><a href="{% url 'edit_profile' %}">Editar perfil</a></p>
+{% endblock %}

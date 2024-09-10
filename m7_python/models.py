@@ -8,6 +8,11 @@ class UserProfile(models.Model):
     telefono = models.CharField(max_length=15, blank=True, null=True)
     rol = models.CharField(max_length=20, choices=(('arrendador', 'Arrendador'), ('arrendatario', 'Arrendatario')))
     rut = models.CharField(max_length=12, unique=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)  
+    bio = models.TextField(null=True, blank=True)  
+
+    def __str__(self):
+        return self.user.username
 
 
 class Region(models.Model):
