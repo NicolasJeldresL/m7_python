@@ -1,9 +1,38 @@
-{% extends 'base.html' %}
-{% block content %}
-<h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Registro de Usuario</h2>
+        <form action="{% url 'agregar_usuario' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3 text-center">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label_tag }}</label>
+                    <div>{{ field }}</div>
+                    {% if field.errors %}
+                        <div class="text-danger">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% if form.errors %}
+                <div class="text-danger">
+                    <strong>Errores en el formulario:</strong>
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            <li>{{ field }}: {{ errors }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <hr/>
+            <button type="submit" class="btn btn-info">Registro</button>
+        </form>
+    </div>
+</body>
+</html>

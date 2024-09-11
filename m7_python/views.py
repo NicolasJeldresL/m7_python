@@ -21,11 +21,12 @@ def register(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'm7_python/register.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
+
 
 @login_required
 def profile_view(request):
-    return render(request, 'm7_python/profile.html')
+    return render(request, 'profile.html')
 
 @login_required
 def edit_profile(request):
@@ -36,4 +37,4 @@ def edit_profile(request):
             return redirect('profile')
     else:
         form = UserUpdateForm(instance=request.user)
-    return render(request, 'm7_python/edit_profile.html', {'form': form})
+    return render(request, 'profile_edit.html', {'form': form})
