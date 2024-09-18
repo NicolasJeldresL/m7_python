@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Inmuebles Disponibles</h1>
+
+    <ul>
+        {% for inmueble in inmuebles %}
+            <li>
+                {{ inmueble.nombre }} - {{ inmueble.direccion }} - ${{ inmueble.precio }}
+                {% if user.is_authenticated %}
+                    <a href="{% url 'editar_inmueble' inmueble.id %}">Editar</a> |
+                    <a href="{% url 'eliminar_inmueble' inmueble.id %}">Eliminar</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No hay inmuebles disponibles en este momento.</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'agregar_inmueble' %}">Agregar Nuevo Inmueble</a>
+    {% endif %}
+{% endblock %}
