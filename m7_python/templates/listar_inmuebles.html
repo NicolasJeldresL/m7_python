@@ -16,7 +16,7 @@
             <li>No hay inmuebles disponibles en este momento.</li>
         {% endfor %}
     </ul>
-
+    
     {% if user.is_authenticated %}
         <a href="{% url 'agregar_inmueble' %}">Agregar Nuevo Inmueble</a>
     {% endif %}
